@@ -1,0 +1,237 @@
+@model IEnumerable<PersonalWebsite.Models.Comment>
+@{
+    ViewData["Title"] = "Forum";
+}
+
+<div class="container mt-4 mb-5">
+    <div class="text-center mb-4">
+        <h1 class="mb-3">Community Forum</h1>
+        <p class="text-muted">Ask questions, share ideas for new tools, and discuss cybersecurity problems</p>
+    </div>
+
+    <div class="row">
+        <!-- Main Forum Content -->
+        <div class="col-lg-8">
+            <!-- Add Comment Form -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Create New Post</h3>
+                </div>
+                <div class="card-body">
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="username" required maxlength="100" placeholder="Enter your username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Question, Idea, or Discussion</label>
+                            <textarea class="form-control" id="message" rows="6" required placeholder="Ask a question, share an idea for a new tool, or discuss a cybersecurity problem..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post to Forum</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sorting Controls -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label class="form-label mb-0 fw-bold">Sort by:</label>
+                        @{
+                            var currentSort = ViewContext.HttpContext.Request.Query["sortBy"].ToString();
+                            var currentOrder = ViewContext.HttpContext.Request.Query["order"].ToString();
+                            var selectedValue = string.IsNullOrEmpty(currentSort) ? "date-newest" : $"{currentSort}-{currentOrder}";
+                        }
+                        <select id="sortDropdown" class="form-select" style="max-width: 250px;">
+                            @if (selectedValue == "date-newest")
+                            {
+                                <option value="date-newest" selected>Date (Newest First)</option>
+                            }
+                            else
+                            {
+                                <option value="date-newest">Date (Newest First)</option>
+                            }
+                            @if (selectedValue == "date-oldest")
+                            {
+                                <option value="date-oldest" selected>Date (Oldest First)</option>
+                            }
+                            else
+                            {
+                                <option value="date-oldest">Date (Oldest First)</option>
+                            }
+                            @if (selectedValue == "username-asc")
+                            {
+                                <option value="username-asc" selected>Username (A-Z)</option>
+                            }
+                            else
+                            {
+                                <option value="username-asc">Username (A-Z)</option>
+                            }
+                            @if (selectedValue == "username-desc")
+                            {
+                                <option value="username-desc" selected>Username (Z-A)</option>
+                            }
+                            else
+                            {
+                                <option value="username-desc">Username (Z-A)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments List -->
+            <div id="commentsContainer">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>All Discussions</h3>
+                    <span class="badge bg-secondary">@(Model != null && Model.Any() ? Model.Count() : 0) posts</span>
+                </div>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var comment in Model)
+                    {
+                        <div class="card mb-3 comment-item" data-comment-id="@comment.Id">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>@comment.Username</strong>
+                                    <small class="d-block">@comment.CreatedDate.ToString("MMM dd, yyyy 'at' HH:mm")</small>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-light edit-comment me-2" data-id="@comment.Id" title="Edit">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-comment" data-id="@comment.Id" title="Delete">Delete</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="comment-message mb-0">@comment.Message</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="card">
+                        <div class="card-body text-center py-5">
+                            <p class="text-muted mb-0">No discussions yet. Be the first to ask a question, share an idea, or start a discussion!</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">Forum Rules</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">• Be respectful to others</li>
+                        <li class="mb-2">• Share helpful ideas and questions</li>
+                        <li class="mb-2">• Stay on topic</li>
+                        <li>• No spam or inappropriate content</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">Quick Links</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="/">Security Tools</a></li>
+                        <li class="mb-2"><a href="/Home/Downloads">Downloads</a></li>
+                        <li><a href="/Home/About">About Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Sorting dropdown
+            $('#sortDropdown').on('change', function() {
+                var value = $(this).val();
+                var parts = value.split('-');
+                var sortBy = parts[0];
+                var order = parts[1];
+                window.location.href = '/Home/Comments?sortBy=' + sortBy + '&order=' + order;
+            });
+            
+            // Submit new comment
+            $('#commentForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var username = $('#username').val().trim();
+                var message = $('#message').val().trim();
+                
+                if (!username || !message) {
+                    alert('Please fill in your name and message');
+                    return;
+                }
+                
+                $.ajax({
+                    url: '/Home/AddComment',
+                    type: 'POST',
+                    data: {
+                        username: username,
+                        message: message
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Error adding comment. Please try again.');
+                    }
+                });
+            });
+            
+            // Edit comment
+            $(document).on('click', '.edit-comment', function() {
+                var commentId = $(this).data('id');
+                var card = $(this).closest('.comment-item');
+                var message = card.find('.comment-message').text().trim();
+                
+                var newMessage = prompt('Edit your comment:', message);
+                if (newMessage && newMessage !== message && newMessage.trim() !== '') {
+                    $.ajax({
+                        url: '/Home/EditComment',
+                        type: 'POST',
+                        data: {
+                            id: commentId,
+                            message: newMessage.trim()
+                        },
+                        success: function() {
+                            location.reload();
+                        },
+                        error: function() {
+                            alert('Error editing comment. Please try again.');
+                        }
+                    });
+                }
+            });
+            
+            // Delete comment
+            $(document).on('click', '.delete-comment', function() {
+                var commentId = $(this).data('id');
+                if (confirm('Are you sure you want to delete this comment?')) {
+                    $.ajax({
+                        url: '/Home/DeleteComment/' + commentId,
+                        type: 'POST',
+                        success: function() {
+                            location.reload();
+                        },
+                        error: function() {
+                            alert('Error deleting comment. Please try again.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+

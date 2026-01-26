@@ -1,0 +1,408 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="tools-page">
+    <div class="container mt-5 mb-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Security Tools</h1>
+            <p class="lead hero-desc">Practical tools to help you with password security and more</p>
+        </div>
+
+        <!-- Password Generator Section -->
+        <div class="tool-card mb-5">
+            <h2 class="h3 mb-4">Password Generator</h2>
+            <p class="text-muted mb-4">Generate strong, secure passwords with customizable options</p>
+            <div class="tool-options mb-4">
+                <div class="mb-3">
+                    <label for="pwdLength" class="form-label">Password Length: <span id="lengthValue">12</span></label>
+                    <input type="range" class="form-range" id="pwdLength" min="8" max="32" value="12">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="includeUppercase" checked>
+                            <label class="form-check-label" for="includeUppercase">Uppercase Letters (A-Z)</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="includeLowercase" checked>
+                            <label class="form-check-label" for="includeLowercase">Lowercase Letters (a-z)</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="includeNumbers" checked>
+                            <label class="form-check-label" for="includeNumbers">Numbers (0-9)</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="includeSymbols" checked>
+                            <label class="form-check-label" for="includeSymbols">Symbols (!@@#$%...)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg mb-3" onclick="generatePassword()">Generate Password</button>
+            <div class="result-container">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control form-control-lg" id="generatedPassword" readonly placeholder="Your password will appear here">
+                    <button class="btn btn-outline-secondary" onclick="copyPassword()">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Password Strength Checker Section -->
+        <!-- This tool analyzes password strength based on length and character variety, providing real-time feedback -->
+        <div class="tool-card">
+            <h2 class="h3 mb-4">Password Strength Checker</h2>
+            <p class="text-muted mb-4">Check the strength of your password and get security recommendations</p>
+            <div class="mb-4">
+                <label for="checkPassword" class="form-label">Enter Password to Check:</label>
+                <input type="password" class="form-control form-control-lg" id="checkPassword" placeholder="Type your password here" oninput="checkPasswordStrength()">
+            </div>
+            <div id="strengthResult" class="strength-result">
+                <div class="strength-bar-container mb-3">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <div id="strengthText" class="strength-text mb-3"></div>
+                <div id="strengthFeedback" class="strength-feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Strong Password Section -->
+<!-- Educational section explaining the importance of strong passwords and cracking times -->
+<section class="password-info-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="info-title mb-4">Why You Should Have a Strong Password</h2>
+                <p class="info-text">Instantly generate a secure, random password, 100% free. A hacker can crack a 10-character lowercase password in just 1 minute. Add uppercase letters, and the time increases to 21 hours. Include numbers, and it takes 5 days to crack.</p>
+                <p class="info-text">But why stop there? Our random password generator goes beyond that - creating ultra-secure passwords that cybercriminals don't stand a chance against. By using a combination of uppercase and lowercase letters, numbers, and special characters, you can create passwords that would take years or even centuries to crack.</p>
+                <p class="info-text">Strong passwords are your first line of defense against unauthorized access to your accounts. Don't take chances with your digital security - use our free password generator to create passwords that protect what matters most.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="info-stats">
+                    <div class="stat-item"><div class="stat-number">1 min</div><div class="stat-label">10 lowercase chars</div></div>
+                    <div class="stat-item"><div class="stat-number">21 hrs</div><div class="stat-label">With uppercase</div></div>
+                    <div class="stat-item"><div class="stat-number">5 days</div><div class="stat-label">With numbers</div></div>
+                    <div class="stat-item highlight"><div class="stat-number">Years</div><div class="stat-label">With all character types</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Password Tips Section -->
+<!-- Displays three key tips for creating strong passwords: Unique, Random, Complex -->
+<section class="password-tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="tips-title mb-3">How to Generate Strong Passwords</h2>
+            <p class="tips-subtitle">Follow these essential tips for maximum security</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="tip-card">
+                    <div class="tip-icon"><svg width="60" height="60" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.7 8 16.1V12.6C8 12 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7ZM12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z" fill="#667eea"/></svg></div>
+                    <h3 class="tip-heading">Make Them Unique</h3>
+                    <p class="tip-desc">No two passwords should ever be the same. Use a different password for each account to prevent a single breach from compromising all your accounts.</p>
+                    <div class="tip-image"><img src="https://images.unsplash.com/photo-1633265486064-086b219458ec?w=300&h=200&fit=crop&q=80" class="img-fluid rounded" alt="Unique Passwords" loading="lazy" onerror="this.style.display='none'"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="tip-card">
+                    <div class="tip-icon">
+                        
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.7 8 16.1V12.6C8 12 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7ZM12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z" fill="#764ba2"/></svg></div>
+                    <h3 class="tip-heading">Make Them Random</h3>
+                    <p class="tip-desc">Avoid predictable patterns like "Password123" or "12345678". Use our random password generator to create truly unpredictable passwords.</p>
+                    <div class="tip-image"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=300&h=200&fit=crop&q=80" class="img-fluid rounded" alt="Random Passwords" loading="lazy" onerror="this.style.display='none'"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="tip-card">
+                    <div class="tip-icon"><svg width="60" height="60" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.7 8 16.1V12.6C8 12 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7ZM12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z" fill="#f093fb"/></svg></div>
+                    <h3 class="tip-heading">Make Them Complex</h3>
+                    <p class="tip-desc">Use strong combinations of uppercase and lowercase letters, numbers, and special symbols. The more complex, the harder it is to crack.</p>
+                    <div class="tip-image"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&h=200&fit=crop&q=80" class="img-fluid rounded" alt="Complex Passwords" loading="lazy" onerror="this.style.display='none'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<!-- Encourages users to visit the Downloads page for more security resources -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-icon"><svg width="80" height="80" viewBox="0 0 24 24" fill="none"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="white"/></svg></div>
+            <h2 class="cta-title">Get More Security Resources</h2>
+            <p class="cta-desc">Download free security guides, checklists, and tools to enhance your cybersecurity knowledge and protect your digital assets.</p>
+            <a href="/Home/Downloads" class="btn cta-button">View Downloads</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Password Generator Logic
+        // Updates the displayed length value when user moves the slider
+        document.getElementById('pwdLength').addEventListener('input', function() {
+            document.getElementById('lengthValue').textContent = this.value;
+        });
+
+        // Password Generator Function
+        // Generates a random password based on user-selected options (length, character types)
+        function generatePassword() {
+            const length = parseInt(document.getElementById('pwdLength').value);
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeLowercase = document.getElementById('includeLowercase').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+
+            
+            let charset = '';
+            if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (includeNumbers) charset += '0123456789';
+            if (includeSymbols) charset += '!@@#$%^&*()_+-=[]{}|;:,.<>?';
+
+             
+            if (charset === '') {
+                alert('Please select at least one character type!');
+                return;
+            }
+
+            // Generate random password by selecting random characters from the charset
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+
+            
+            document.getElementById('generatedPassword').value = password;
+        }
+
+        // Copy Password Function
+        function copyPassword() {
+            const passwordField = document.getElementById('generatedPassword');
+            if (passwordField.value === '') {
+                alert('Generate a password first!');
+                return;
+            }
+            passwordField.select();
+            document.execCommand('copy');
+            alert('Password copied to clipboard!');
+        }
+
+        // Password Strength Checker Logic
+        function checkPasswordStrength() {
+            const password = document.getElementById('checkPassword').value;
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            const strengthFeedback = document.getElementById('strengthFeedback');
+
+            // Reset display if password field is empty
+            if (password === '') {
+                strengthBar.style.width = '0%';
+                strengthBar.className = 'strength-bar';
+                strengthText.textContent = '';
+                strengthFeedback.innerHTML = '';
+                return;
+            }
+
+            
+            let feedback = [];
+            const length = password.length;
+
+            // Check if password contains different character types
+            if (!/[a-z]/.test(password)) feedback.push('Add lowercase letters');
+            if (!/[A-Z]/.test(password)) feedback.push('Add uppercase letters');
+            if (!/[0-9]/.test(password)) feedback.push('Add numbers');
+            if (!/[^A-Za-z0-9]/.test(password)) feedback.push('Add special characters');
+
+            // Determine strength level based on password length
+            // Length-based strength criteria: 8-10 = Weak, 11-14 = Good, 14+ = Strong
+            let strengthLevel = 'Weak';
+            let strengthColor = 'danger';
+            let width = '25%';
+
+            if (length >= 16) {
+                // Very strong if 16+ characters with all character types
+                if (feedback.length === 0) {
+                    strengthLevel = 'Very Strong';
+                    strengthColor = 'success';
+                    width = '100%';
+                } else {
+                    strengthLevel = 'Strong';
+                    strengthColor = 'info';
+                    width = '85%';
+                }
+            } else if (length >= 14) {
+                strengthLevel = 'Strong';
+                strengthColor = 'info';
+                width = '75%';
+            } else if (length >= 11) {
+                strengthLevel = 'Good';
+                strengthColor = 'warning';
+                width = '60%';
+            } else if (length >= 8) {
+                strengthLevel = 'Weak';
+                strengthColor = 'danger';
+                width = '40%';
+                if (length < 10) {
+                    feedback.push('Use at least 10-11 characters for better security');
+                }
+            } else {
+                strengthLevel = 'Very Weak';
+                strengthColor = 'danger';
+                width = '20%';
+                feedback.push('Use at least 8 characters');
+            }
+
+            // Update the visual strength bar and text with the bootstrap package
+            strengthBar.style.width = width;
+            strengthBar.className = `strength-bar bg-${strengthColor}`;
+            strengthText.textContent = `Password Strength: ${strengthLevel}`;
+            strengthText.className = `strength-text text-${strengthColor} fw-bold`;
+
+            // Display recommendations or success message
+            if (feedback.length > 0) {
+                strengthFeedback.innerHTML = '<strong>Recommendations:</strong><ul class="mb-0 mt-2">' + 
+                    feedback.map(f => `<li>${f}</li>`).join('') + '</ul>';
+            } else {
+                strengthFeedback.innerHTML = '<p class="text-success mb-0">Excellent! Your password is very strong.</p>';
+            }
+        }
+    </script>
+}
+
+@section Styles {
+    <style>
+        /* Tools Page Styling */
+        /* Animated gradient background for the main tools section */
+        .tools-page { min-height: 80vh; padding: 40px 0; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #f5f7fa 100%); background-size: 200% 200%; animation: subtleGradient 10s ease infinite; }
+        @@keyframes subtleGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        /* Tool Card Styling - Cards for password generator and strength checker */
+        .tool-card { background: #f8f9fa; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .tool-options, .strength-result { background: white; padding: 25px; border-radius: 8px; }
+        .result-container { margin-top: 20px; }
+        
+        /* Password Strength Bar Styling */
+        /* Visual indicator showing password strength level */
+        .strength-bar-container { 
+            height: 30px; 
+            background: #e9ecef;
+             border-radius: 15px; 
+             overflow: hidden; }
+
+        .strength-bar {
+         height: 100%;
+         transition: width 0.3s ease,
+            background-color 0.3s ease; 
+          border-radius: 15px; }
+
+        .strength-feedback ul {
+             list-style: none;
+              padding-left: 0;
+               }
+        .strength-feedback li { padding: 5px 0; }
+
+        .hero-desc { 
+        font-size: 1.3rem; 
+        font-weight: 400;
+        color: #555;
+        letter-spacing: 0.3px; }
+
+        /* Why Strong Password Section Styling */
+        .password-info-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .info-title { font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 30px; }
+        .info-text { font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.95); margin-bottom: 20px; }
+        .info-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .stat-item:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.25); }
+        .stat-item.highlight { background: rgba(255, 255, 255, 0.25); border: 2px solid rgba(255, 255, 255, 0.5); }
+        .stat-number { font-size: 2rem; font-weight: 700; color: white; margin-bottom: 10px; }
+        .stat-label { font-size: 0.9rem; color: rgba(255, 255, 255, 0.9); }
+
+
+        /* Password Tips Section Styling */
+        .password-tips-section { padding: 100px 50px; background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); }
+        .tips-title { font-size: 2.5rem; font-weight: 700; color: #333; margin-bottom: 15px; }
+        .tips-subtitle { font-size: 1.2rem; color: #666; margin-bottom: 50px; }
+        .tip-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .tip-card:hover { transform: translateY(-10px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); }
+        .tip-icon { margin-bottom: 20px; display: flex; justify-content: center; }
+        .tip-heading { font-size: 1.5rem; font-weight: 700; color: #333; margin-bottom: 15px; }
+        .tip-desc { font-size: 1rem; color: #666; line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
+        .tip-image { margin-top: auto; border-radius: 8px; overflow: hidden; }
+        .tip-image img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+
+       /* users to visit Downloads page */
+        .cta-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+        .cta-content { text-align: center; max-width: 700px; margin: 0 auto; }
+        .cta-icon { margin-bottom: 30px; display: flex; justify-content: center; }
+        .cta-title { font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 20px; }
+        .cta-desc { font-size: 1.2rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); margin-bottom: 35px; font-weight: 400; }
+        .cta-button {
+            background: white;
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); color: #1a1a2e; background: #f8f9fa; }
+
+        /* Responsive Design - Tablet */
+        @@media (max-width: 992px) {
+            .password-info-section { padding: 60px 30px; }
+            .info-title { font-size: 2rem; }
+            .info-stats { margin-top: 30px; }
+        }
+        
+        /* Responsive Design - Mobile */
+        @@media (max-width: 768px) {
+            .tool-card { padding: 25px; }
+            .password-tips-section { padding: 60px 20px; }
+            .tips-title { font-size: 2rem; }
+            .tip-card { padding: 30px 20px; }
+            .info-stats { grid-template-columns: 1fr; }
+            .cta-section { padding: 60px 20px; }
+            .cta-title { font-size: 2rem; }
+            .cta-desc { font-size: 1rem; }
+        }
+    </style>
+}

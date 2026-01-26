@@ -1,0 +1,202 @@
+@{
+    ViewData["Title"] = "Downloads";
+}
+
+<div class="downloads-page">
+    <div class="container mt-5 mb-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3 downloads-title">Downloads</h1>
+            <p class="lead downloads-subtitle">Security guides, resources, and tools</p>
+        </div>
+
+        <div class="row">
+            <!-- Documents Section -->
+            <div class="col-lg-6 mb-5">
+                <h2 class="h3 mb-4">Documents</h2>
+                <div class="download-list">
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h4 class="h5">Password Security Checklist</h4>
+                            <p class="text-muted">Checklist for creating and managing secure passwords</p>
+                            <a href="~/documents/password-checklist.pdf" class="btn btn-sm btn-primary" download>Download PDF</a>
+                        </div>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h4 class="h5">Server Security Resources</h4>
+                            <p class="text-muted">Comprehensive guide on server security and best practices</p>
+                            <a href="~/documents/server-security-resources.pdf" class="btn btn-sm btn-primary" download>Download PDF</a>
+                        </div>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h4 class="h5">Security Best Practices Guide</h4>
+                            <p class="text-muted">Comprehensive guide on security best practices</p>
+                            <a href="~/documents/best-practices-guide.pdf" class="btn btn-sm btn-primary" download>Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software Section -->
+            <div class="col-lg-6 mb-5">
+                <h2 class="h3 mb-4">Software & Tools</h2>
+                <div class="download-list">
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h4 class="h5">Password Generator Tool</h4>
+                            <p class="text-muted">Desktop version of the password generator</p>
+                            <a href="~/documents/password-generator.exe" class="btn btn-sm btn-primary" download>Download</a>
+                        </div>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h4 class="h5">Security Scripts Collection</h4>
+                            <p class="text-muted">Useful security scripts and utilities</p>
+                            <a href="~/documents/security-scripts.zip" class="btn btn-sm btn-primary" download>Download ZIP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .downloads-page {
+            min-height: 80vh;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #f5f7fa 100%);
+            background-size: 200% 200%;
+            animation: subtleGradient 10s ease infinite;
+        }
+
+        @@keyframes subtleGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .downloads-title {
+            color: #1a1a2e;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .downloads-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #555;
+            letter-spacing: 0.3px;
+        }
+
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .download-item {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left-color: #764ba2;
+        }
+
+        .download-icon {
+            color: #667eea;
+            flex-shrink: 0;
+            transition: color 0.3s ease;
+        }
+
+        .download-item:hover .download-icon {
+            color: #764ba2;
+        }
+
+        .download-content {
+            flex: 1;
+        }
+
+        .download-content h4 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .download-content p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .download-content .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-content .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        @@media (max-width: 768px) {
+            .downloads-page {
+                padding: 40px 20px;
+            }
+
+            .download-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .download-icon {
+                align-self: center;
+            }
+        }
+    </style>
+}

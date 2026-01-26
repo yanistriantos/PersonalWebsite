@@ -1,0 +1,178 @@
+@{
+    ViewData["Title"] = "About Me";
+}
+
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-lg-12 text-center mb-4">
+            <h1 class="display-4 fw-bold mb-2">About Me</h1>
+            <p class="lead text-muted">Software Engineer & Penetration Tester</p>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-4">
+        <div class="col-lg-6">
+            <h2 class="h3 mb-3">Hi there,</h2>
+            <p class="about-text">
+                I'm Ioannis Triantos, a software engineer and cybersecurity enthusiast.
+                My journey in technology started with a curiosity about 
+                how systems work, how they get built and breached.
+            </p>
+            <p class="about-text">
+                Over the years, I've developed expertise in identifying vulnerabilities, conducting security 
+                assessments, and creating robust applications that prioritize both functionality and security. 
+                I believe that security should be built into applications from the ground up, not added as an 
+                afterthought.
+            </p>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="~/images/profile.jpg" alt="Ioannis Triantos" class="about-profile-image" onerror="this.src='https://via.placeholder.com/300x300?text=Ioannis+Triantos'" />
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <h2 class="h3 mb-3">Education & Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 class="h5">Software Engineering & Cybersecurity</h4>
+                    <p class="text-muted mb-0">Focused on web application security, penetration testing, and secure coding practices.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="h5">Professional Experience</h4>
+                    <p class="text-muted mb-0">Working on security testing, vulnerability assessment, and developing secure applications 
+                    that protect user data and business assets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <h2 class="h3 mb-3">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="50" height="50">
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" width="50" height="50">
+                    <span>C++</span>
+                </div>
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="50" height="50">
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" width="50" height="50">
+                    <span>C#</span>
+                </div>
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="50" height="50">
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="50" height="50">
+                    <span>CSS3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="h3 mb-3">Why I Built This Platform</h2>
+            <p class="about-text">
+                This Cybersecurity Tools & Resources Hub was created to provide useful security tools and resources 
+                to developers, students, and anyone interested in cybersecurity. I believe that security knowledge 
+                should be accessible to everyone, and these tools help people understand and implement better security 
+                practices in their projects.
+            </p>
+            <p class="about-text">
+                Through this platform, I aim to share practical tools like password generators and strength checkers, 
+                along with educational resources that help build a more secure digital world.
+            </p>
+            <div class="text-center mt-3">
+                <a href="/Home/Contact" class="btn btn-primary btn-lg">Contact Me</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .about-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .about-profile-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline {
+            padding: 10px 0;
+        }
+
+        .timeline-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .timeline-item h4 {
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            min-width: 100px;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-item span {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        @@media (max-width: 768px) {
+            .about-profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .skills-container {
+                gap: 15px;
+            }
+        }
+    </style>
+}
