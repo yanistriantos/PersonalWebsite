@@ -21,18 +21,6 @@
 - **База данни:** MySQL (Entity Framework Core)
 - **Ajax:** Асинхронни CRUD операции
 
-### 2.3 База данни
-**Таблица Comments:**
-- Id (Primary Key)
-- Username
-- Message
-- CreatedDate
-- SessionId
-
----
-
-## 3. ИНСТАЛАЦИЯ
-
 ### 3.1 Изисквания
 - .NET 10.0 SDK
 - MySQL Server
@@ -43,9 +31,7 @@
 3. Изпълнете `database_setup.sql`
 4. Настройте connection string в `appsettings.json`
 5. Стартирайте: `dotnet run`
-
 ---
-
 ## 4. СТРУКТУРА НА ПРОЕКТА
 PersonalWebsite/
 ├── Controllers/ # MVC контролери
@@ -55,6 +41,5 @@ PersonalWebsite/
 └── wwwroot/ # Static files
 
 ## Инсталация
-
 1. Клонирайте репозитория:
 git clone https://github.com/yanistriantos/PersonalWebsite.git
