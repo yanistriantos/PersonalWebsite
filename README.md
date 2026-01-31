@@ -25,13 +25,6 @@
 - .NET 10.0 SDK
 - MySQL Server
 
-### 3.2 Стъпки
-1. Клонирайте: `git clone https://github.com/yanistriantos/PersonalWebsite.git`
-2. Създайте база данни `PersonalWebsiteDb` в MySQL
-3. Изпълнете `database_setup.sql`
-4. Настройте connection string в `appsettings.json`
-5. Стартирайте: `dotnet run`
----
 ## 4. СТРУКТУРА НА ПРОЕКТА
 PersonalWebsite/
 ├── Controllers/ # MVC контролери
@@ -40,6 +33,13 @@ PersonalWebsite/
 ├── Data/ # Database context
 └── wwwroot/ # Static files
 
-## Инсталация
-1. Клонирайте репозитория:
-git clone https://github.com/yanistriantos/PersonalWebsite.git
+### 3.2 Стъпки
+1. Клонирайте: `git clone https://github.com/yanistriantos/PersonalWebsite.git`
+2. Създайте базата данни `PersonalWebsiteDb` в MySQL
+3. Изпълни `database_setup.sql`
+4. Настройте connection string в `appsettings.json`
+5. Стартирайте: `dotnet run`
+---
+
+
+
