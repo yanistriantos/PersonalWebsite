@@ -33,7 +33,7 @@ PersonalWebsite/
 ├── Data/ # Database context
 └── wwwroot/ # Static files
 
-### 3.2 Стъпки
+### 5 Инсталация
 1. Клонирайте: `git clone https://github.com/yanistriantos/PersonalWebsite.git`
 2. Създайте базата данни `PersonalWebsiteDb` в MySQL
 3. Изпълни `database_setup.sql`
