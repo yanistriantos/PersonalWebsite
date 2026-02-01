@@ -51,13 +51,16 @@
         </div>
 
         <!-- Password Strength Checker Section -->
-        <!-- This tool analyzes password strength based on length and character variety, providing real-time feedback -->
+        <!-- This tool analyzes password strength based on length and character variety -->
         <div class="tool-card">
             <h2 class="h3 mb-4">Password Strength Checker</h2>
             <p class="text-muted mb-4">Check the strength of your password and get security recommendations</p>
             <div class="mb-4">
                 <label for="checkPassword" class="form-label">Enter Password to Check:</label>
-                <input type="password" class="form-control form-control-lg" id="checkPassword" placeholder="Type your password here" oninput="checkPasswordStrength()">
+                <input type="password" class="form-control form-control-lg" 
+                id="checkPassword"
+                placeholder="Type your password here" 
+                oninput="checkPasswordStrength()">
             </div>
             <div id="strengthResult" class="strength-result">
                 <div class="strength-bar-container mb-3">
@@ -71,7 +74,7 @@
 </div>
 
 <!-- Why Strong Password Section -->
-<!-- Educational section explaining the importance of strong passwords and cracking times -->
+<!-- explaining the importance of strong passwords and cracking times -->
 <section class="password-info-section">
     <div class="container">
         <div class="row align-items-center">
@@ -132,8 +135,7 @@
     </div>
 </section>
 
-<!-- Call to Action Section -->
-<!-- Encourages users to visit the Downloads page for more security resources -->
+<!-- end section -->
 <section class="cta-section">
     <div class="container">
         <div class="cta-content">
@@ -224,7 +226,7 @@
             if (!/[^A-Za-z0-9]/.test(password)) feedback.push('Add special characters');
 
             // Determine strength level based on password length
-            // Length-based strength criteria: 8-10 = Weak, 11-14 = Good, 14+ = Strong
+            // Length strength criteria: 8-10 = Weak, 11-14 = Good, 14+ = Strong
             let strengthLevel = 'Weak';
             let strengthColor = 'danger';
             let width = '25%';
@@ -282,7 +284,6 @@
 @section Styles {
     <style>
         /* Tools Page Styling */
-        /* Animated gradient background for the main tools section */
         .tools-page { min-height: 80vh; padding: 40px 0; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #f5f7fa 100%); background-size: 200% 200%; animation: subtleGradient 10s ease infinite; }
         @@keyframes subtleGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         /* Tool Card Styling - Cards for password generator and strength checker */
